@@ -54,7 +54,7 @@
                         @if($emp->count() > 0)
                         @foreach($emp as $i => $e)
                         <tr>
-                            <td>{{++$i}}</td>
+                            <td>{{$i + $emp->firstitem() }}</td>
                             <td>{{$e->nip}}</td>
                             <td>{{$e->nama}}</td>
                             <td>{{$e->jabatan}}</td>
@@ -80,6 +80,7 @@
                         @endif
                     </tbody>
                 </table>
+                {{ $emp->links() }}
             </div>
             <!-- /.card-body -->
         </div>

@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $emp = EmployeeModel::all();
+        $emp = EmployeeModel::paginate(10);
         return view('employee.employee')->with('emp', $emp);
     }
 
@@ -99,7 +99,32 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Ubah Format Datepicker
+        $requestDateFormated = new Request([
+            'nip' => $request->nip,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'jabatan' => $request->jabatan,
+            'alamat' => $request->alamat,
+            'hp' => $request->hp,
+            'tanggal_masuk' => date('Y-m-d', strtotime($request->tanggal_masuk)),
+        ]);
+
+        // Validation
+        $requestDateFormated->validate([
+            'nip' => 'required|string|max:10|unique:employees,nip,' . $id,
+            'nama' => 'required|string|max:50',
+            'email' => 'required|string|email|max:50',
+            'jabatan' => 'required|string|max:60',
+            'alamat' => 'required|string|max:100',
+            'hp' => 'required|digits_between:6,15',
+            'tanggal_masuk' => 'required|date|before_or_equal:' . date('Y-m-d'),
+        ]);
+
+        $data = EmployeeModel::where('id', '=', $id)
+                ->update($requestDateFormated->except(['_token', '_method']));
+        return redirect('employee')
+            ->with('success', 'Data Pegawai Berhasil Diubah');
     }
 
     /**
@@ -110,6 +135,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        EmployeeModel::where('id', '=', $id)->delete();
+        return redirect('employee')
+        ->with('success', 'Data Pegawai Berhasil Dihapus');
     }
 }
