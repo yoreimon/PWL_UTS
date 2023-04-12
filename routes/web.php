@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index']);
 Route::resource('/employee', EmployeeController::class);
 Route::resource('/nilai', NilaiController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
