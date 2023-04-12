@@ -24,5 +24,5 @@ Route::resource('/nilai', NilaiController::class);
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout']);
 Route::middleware(['auth'])->group(function () {
-
+    Route::get('/home', [DashboardController::class, 'index'])->name('home');
 });
