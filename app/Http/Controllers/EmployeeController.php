@@ -26,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.create_employee')->with('url_form', url('/employee'));
     }
 
     /**
@@ -37,7 +37,32 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Ubah Format Datepicker
+        $requestDateFormated = new Request([
+            'nip' => $request->nip,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'jabatan' => $request->jabatan,
+            'alamat' => $request->alamat,
+            'hp' => $request->hp,
+            'tanggal_masuk' => date('Y-m-d', strtotime($request->tanggal_masuk)),
+        ]);
+
+        // Validation
+        $requestDateFormated->validate([
+            'nip' => 'required|string|max:10|unique:employees,nip',
+            'nama' => 'required|string|max:50',
+            'email' => 'required|string|email|max:50',
+            'jabatan' => 'required|string|max:60',
+            'alamat' => 'required|string|max:100',
+            'hp' => 'required|digits_between:6,15',
+            'tanggal_masuk' => 'required|date|before_or_equal:' . date('Y-m-d'),
+        ]);
+
+        $data = EmployeeModel::create($requestDateFormated->except(['_token']));
+        // Jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect('employee')
+            ->with('success', 'Data Pegawai Berhasil Ditambahkan');
     }
 
     /**
@@ -59,7 +84,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $emp = EmployeeModel::find($id);
+        return view('employee.create_employee')
+            ->with('emp', $emp)
+            ->with('url_form', url('/employee/' . $id));
     }
 
     /**

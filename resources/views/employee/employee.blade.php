@@ -60,7 +60,7 @@
                             <td>{{$e->jabatan}}</td>
                             <td>{{$e->alamat}}</td>
                             <td>{{$e->hp}}</td>
-                            <td class="row">
+                            <td>
                                 <!-- Bikin tombol edit dan delete -->
                                 <a href="{{ url('/employee/'. $e->id.'/edit') }}"
                                     class="btn btn-sm btn-warning mr-2">Edit</a>
