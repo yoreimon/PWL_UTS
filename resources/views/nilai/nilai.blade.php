@@ -45,13 +45,13 @@
                 <th>Nama</th>
                 <th>NIM</th>
                 <th>Proyek</th>
-                <th>Manajemen Proyek</th>
-                <th>Jaringan Komputer</th>
-                <th>Kewarganegaraan</th>
+                <th>Manj. Proyek</th>
+                <th>Jarkom</th>
+                <th>KWN</th>
                 <th>PWL</th>
-                <th>Praktikum Jarkom</th>
+                <th>Prak. Jarkom</th>
                 <th>Statkom</th>
-                <th>Business Intellegence</th>
+                <th>Business I.</th>
                 <th>ADBO</th>
               </tr>
             </thead>
