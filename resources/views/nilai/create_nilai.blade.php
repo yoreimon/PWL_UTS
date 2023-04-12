@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 @section('content')
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -23,7 +23,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Tabel Nilia</h3>
+          <h3 class="card-title">Tabel Nilai</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">

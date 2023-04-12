@@ -13,12 +13,24 @@ class NilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $nilai = Nilai::orderBy('nama')->paginate(10);
-        return view('nilai.nilai', ['nilai' => $nilai]);
+    // public function index()
+    // {
+    //     $nilai = Nilai::orderBy('nama')->paginate(10);
+    //     return view('nilai.nilai', ['nilai' => $nilai]);
 
+    // }
+
+    public function index(Request $request)
+    {
+        $search = $request->query('search');
+
+        $nilai = Nilai::where('nama', 'LIKE', "%{$search}%")
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+        return view('nilai.nilai', compact('nilai'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -78,7 +90,7 @@ class NilaiController extends Controller
     public function edit($id)
     {
         $nilai = Nilai::find($id);
-        return view('nilai.edit_nilai')
+        return view('nilai.create_nilai')
         ->with('nilai', $nilai)
         ->with('nilai_form', url('/nilai/' . $id));
     }

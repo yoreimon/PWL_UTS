@@ -19,6 +19,15 @@
 
     <!-- Main content -->
     <section class="content">
+      <form method="GET" action="{{ route('nilai.index') }}">
+        <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Cari Nama Mahasiswa" value="{{ request()->query('search') }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+      </form>
+
 
       <!-- Default box -->
       <div class="card">
