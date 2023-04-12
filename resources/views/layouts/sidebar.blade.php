@@ -48,7 +48,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="{{ url('/nilai-mahasiswa') }}" class="nav-link">
+                     <a href="{{ url('/nilai') }}" class="nav-link">
                          <i class="nav-icon fas fa-graduation-cap"></i>
                          <p>
                              Mahasiswa
