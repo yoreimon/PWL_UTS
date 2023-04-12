@@ -88,6 +88,8 @@
               @endif
             </tbody>
           </table>
+          {{ $nilai->links() }}
+
         </div>
         <!-- /.card-body -->
         <!-- /.card-body -->

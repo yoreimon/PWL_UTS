@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NilaiController extends Controller
 {
@@ -14,8 +15,9 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $nilai = Nilai::all();
-        return view('nilai.nilai') -> with('nilai', $nilai);
+        $nilai = Nilai::orderBy('nama')->paginate(10);
+        return view('nilai.nilai', ['nilai' => $nilai]);
+
     }
 
     /**
