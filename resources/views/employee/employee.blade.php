@@ -29,6 +29,9 @@
                 </div>
             </div>
         </form>
+        @if(session()->has('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <!-- Default box -->
         <div class="card">
             <div class="card-header">

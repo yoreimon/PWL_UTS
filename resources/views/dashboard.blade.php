@@ -24,7 +24,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Hallo</h3>
+                <h3 class="card-title">Hallo, selamat datang {{ Auth::user()->name }}</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -36,7 +36,6 @@
                 </div>
             </div>
             <div class="card-body">
-                Selamat Datang
                 <p>Anggota Kelompok:</p>
                 <ul>
                     <li>Josafat Pratama Susilo / 2141720031 / 15</li>
