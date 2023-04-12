@@ -37,9 +37,10 @@
             </div>
             <div class="card-body">
 
-                <a href="{{url('employee/create')}}" class="btn btn-sm btn-success mb-3">Tambah Data</a>
+                <a href="{{url('employee/create')}}" class="btn btn-sm btn-success mb-3">Tambah
+                    Data</a>
 
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="data_pegawai" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -48,13 +49,14 @@
                             <th>Jabatan</th>
                             <th>Alamat</th>
                             <th>No. HP</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if($emp->count() > 0)
                         @foreach($emp as $i => $e)
                         <tr>
-                            <td>{{$i + $emp->firstitem() }}</td>
+                            <td>{{++$i}}</td>
                             <td>{{$e->nip}}</td>
                             <td>{{$e->nama}}</td>
                             <td>{{$e->jabatan}}</td>
@@ -80,7 +82,6 @@
                         @endif
                     </tbody>
                 </table>
-                {{ $emp->links() }}
             </div>
             <!-- /.card-body -->
         </div>
@@ -90,3 +91,11 @@
     <!-- /.content -->
 </div>
 @endsection
+
+@push('custom.js')
+<script>
+$(document).ready(function() {
+    $('#data_pegawai').DataTable();
+});
+</script>
+@endpush
