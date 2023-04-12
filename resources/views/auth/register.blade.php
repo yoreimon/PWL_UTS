@@ -30,6 +30,14 @@
                 <form action="{{ url('/register')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
+                        <input name="username" type="text" class="form-control" placeholder="Username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
                         <input name="name" type="text" class="form-control" placeholder="Name">
                         <div class="input-group-append">
                             <div class="input-group-text">
