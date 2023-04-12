@@ -17,15 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
-Route::resource('/employee', EmployeeController::class);
-Route::resource('/nilai', NilaiController::class);
+
 
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout']);
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [DashboardController::class, 'index'])->name('home');
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::resource('/employee', EmployeeController::class);
+    Route::resource('/nilai', NilaiController::class);
+    // Route::get('/home', [DashboardController::class, 'index'])->name('home');
 });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

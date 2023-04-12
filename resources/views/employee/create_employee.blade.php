@@ -101,6 +101,9 @@
                 </form>
             </div>
             <!-- /.card-body -->
+            <div class="card-footer">
+                ~Josafat Pratama Susilo
+            </div>
         </div>
         <!-- /.card -->
 

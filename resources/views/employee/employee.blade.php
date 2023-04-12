@@ -20,7 +20,15 @@
 
     <!-- Main content -->
     <section class="content">
-
+        <form action="{{ url('/employee') }}">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Cari Data Pegawai"
+                    value="{{ request()->query('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -56,7 +64,7 @@
                         @if($emp->count() > 0)
                         @foreach($emp as $i => $e)
                         <tr>
-                            <td>{{++$i}}</td>
+                            <td>{{$i + $emp->firstItem() }}</td>
                             <td>{{$e->nip}}</td>
                             <td>{{$e->nama}}</td>
                             <td>{{$e->jabatan}}</td>
@@ -77,11 +85,13 @@
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="6" class="text-center">Data tidak ada</td>
+                            <td colspan="12" class="text-center">Data tidak ada</td>
+                            </td>
                         </tr>
                         @endif
                     </tbody>
                 </table>
+                {{ $emp->links() }}
             </div>
             <!-- /.card-body -->
         </div>
@@ -92,10 +102,10 @@
 </div>
 @endsection
 
-@push('custom.js')
+<!-- @push('datatable.js')
 <script>
 $(document).ready(function() {
     $('#data_pegawai').DataTable();
 });
 </script>
-@endpush
+@endpush -->

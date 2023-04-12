@@ -15,7 +15,17 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $emp = EmployeeModel::all();
+        // $emp = EmployeeModel::all();
+        // $emp = EmployeeModel::paginate(10);
+        if (request('search')) {
+            $emp = EmployeeModel::where('nama', 'like', '%' . request('search') . '%')
+                                ->orWhere('nip', '=', request('search'))
+                                ->orWhere('email', 'like', '%' . request('search') . '%')
+                                ->orWhere('jabatan', 'like', '%' . request('search') . '%')
+                                ->paginate(10);
+        } else {
+            $emp = EmployeeModel::paginate(10);
+        }
         return view('employee.employee')->with('emp', $emp);
     }
 
