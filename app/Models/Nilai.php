@@ -15,13 +15,13 @@ class Nilai extends Model
         'nama',
         'nim',
         'Proyek',
-        'Manajemen Proyek',
-        'Jaringan Komputer',
+        'Manajemen_Proyek',
+        'Jaringan_Komputer',
         'Kewarganegaraan',
         'PWL',
-        'Praktikum Jarkom',
+        'Praktikum_Jarkom',
         'Statkom',
-        'Business Intellegence',
+        'Business_Intellegence',
         'ADBO',
     ];
 }
