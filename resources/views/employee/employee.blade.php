@@ -81,7 +81,7 @@
                                 <form method="POST" action="{{ url('/employee/'.$e->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>
                             </td>
                         </tr>

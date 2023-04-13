@@ -68,7 +68,7 @@
                         @if($nilai->count() > 0)
                         @foreach($nilai as $i => $m)
                         <tr>
-                            <td>{{++$i}}</td>
+                            <td>{{$i + $nilai->firstItem() }}</td>
                             <td>{{$m->nama}}</td>
                             <td>{{$m->nim}}</td>
                             <td>{{$m->Proyek}}</td>
@@ -81,14 +81,35 @@
                             <td>{{$m->Business_Intellegence}}</td>
                             <td>{{$m->ADBO}}</td>
                             <td>
-                                <!-- Bikin tombol edit dan delete -->
                                 <a href="{{ url('/nilai/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
-
                                 <form method="POST" action="{{ url('/nilai/'.$m->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">hapus</button>
                                 </form>
+                                <!-- <form action="{{ route('nilai.destroy', $m->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-sm btn-danger">Hapus {{ $m->id }}</button>
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="smallBody">
+                                                        <h5 class="text-center">Apakah anda yakin ingin menghapus data {{$m->nim}}?</h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-danger">Setuju</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </form> -->
                             </td>
                         </tr>
                         @endforeach
@@ -107,5 +128,35 @@
     </section>
     <!-- /.content -->
 </div>
+
+<!-- <script>
+    // display a modal (small modal)
+    $(document).on('click', '#smallButton', function(event) {
+        event.preventDefault();
+        let href = $(this).attr('data-attr');
+        $.ajax({
+            url: href
+            , beforeSend: function() {
+                $('#loader').show();
+            },
+            // return the result
+            success: function(result) {
+                $('#modal_delete').modal("show");
+                $('#smallBody').html(result).show();
+            }
+            , complete: function() {
+                $('#loader').hide();
+            }
+            , error: function(jqXHR, testStatus, error) {
+                console.log(error);
+                alert("Page " + href + " cannot open. Error:" + error);
+                $('#loader').hide();
+            }
+            , timeout: 8000
+        })
+    });
+
+</script> -->
+
 
 @endsection
