@@ -42,8 +42,13 @@
                     {!! (isset($emp))? method_field('PUT') : '' !!}
                     <div class="form-group">
                         <label>NIP</label>
-                        <input class="form-control @error('nip') is-invalid @enderror"
+                        @if(isset($emp))
+                            <input class="form-control @error('nip') is-invalid @enderror" readonly
                             value="{{ isset($emp)? $emp->nip : old('nip') }}" name="nip" type="text">
+                        @else
+                            <input class="form-control @error('nip') is-invalid @enderror"
+                            value="{{ isset($emp)? $emp->nip : old('nip') }}" name="nip" type="text">
+                        @endif
                         @error('nip')
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror

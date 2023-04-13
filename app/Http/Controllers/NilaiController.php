@@ -26,7 +26,7 @@ class NilaiController extends Controller
 
         $nilai = Nilai::where('nama', 'LIKE', "%{$search}%")
             ->orderBy('id', 'DESC')
-            ->paginate(10);
+            ->paginate(10)->withQueryString();
 
         return view('nilai.nilai', compact('nilai'));
     }
@@ -53,7 +53,7 @@ class NilaiController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'nim' => 'required|string|max:255',
+            'nim' => 'required|string|max:255|unique:nilai_mahasiswa,nim',
             'Proyek' => 'required|string|max:255',
             'Manajemen_Proyek' => 'required|string|max:255',
             'Jaringan_Komputer' => 'required|string|max:255',
@@ -105,8 +105,8 @@ class NilaiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255,' .$id,
-            'nim' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
+            'nim' => 'required|string|max:255|unique:nilai_mahasiswa,nim,' .$id,
             'Proyek' => 'required|string|max:255',
             'Manajemen_Proyek' => 'required|string|max:255',
             'Jaringan_Komputer' => 'required|string|max:255',

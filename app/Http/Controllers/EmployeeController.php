@@ -19,12 +19,12 @@ class EmployeeController extends Controller
         // $emp = EmployeeModel::paginate(10);
         if (request('search')) {
             $emp = EmployeeModel::where('nama', 'like', '%' . request('search') . '%')
-                                ->orWhere('nip', '=', request('search'))
+                                ->orWhere('nip', 'like', '%' . request('search') . '%')
                                 ->orWhere('email', 'like', '%' . request('search') . '%')
                                 ->orWhere('jabatan', 'like', '%' . request('search') . '%')
-                                ->paginate(10);
+                                ->paginate(10)->withQueryString();
         } else {
-            $emp = EmployeeModel::paginate(10);
+            $emp = EmployeeModel::paginate(10)->withQueryString();
         }
         return view('employee.employee')->with('emp', $emp);
     }

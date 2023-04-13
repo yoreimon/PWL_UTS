@@ -28,7 +28,9 @@
         </div>
       </form>
 
-
+        @if(session()->has('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -85,7 +87,7 @@
                                 <form method="POST" action="{{ url('/nilai/'.$m->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">hapus</button>
+                                    <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus data {{ $m->nama }}?')" class="btn btn-sm btn-danger">hapus</button>
                                 </form>
                                 <!-- <form action="{{ route('nilai.destroy', $m->id) }}" method="post">
                                 @csrf

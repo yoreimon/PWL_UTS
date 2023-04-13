@@ -49,8 +49,14 @@
                     </div>
                     <div class="form-group">
                         <label>NIM</label>
-                        <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                        @if(isset($nilai))
+                            <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                            readonly
                             value="{{ isset($nilai)? $nilai->nim : old('nim')}}" name="nim">
+                        @else
+                            <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                            value="{{ isset($nilai)? $nilai->nim : old('nim')}}" name="nim">
+                        @endif
                         @error('nim')
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
